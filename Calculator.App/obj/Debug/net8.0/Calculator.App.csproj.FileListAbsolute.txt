@@ -1,4 +1,0 @@
-/home/rhu/sources/CalculatorApp/Calculator.App/obj/Debug/net8.0/Calculator.App.GeneratedMSBuildEditorConfig.editorconfig
-/home/rhu/sources/CalculatorApp/Calculator.App/obj/Debug/net8.0/Calculator.App.AssemblyInfoInputs.cache
-/home/rhu/sources/CalculatorApp/Calculator.App/obj/Debug/net8.0/Calculator.App.AssemblyInfo.cs
-/home/rhu/sources/CalculatorApp/Calculator.App/obj/Debug/net8.0/Calculator.App.csproj.CoreCompileInputs.cache
