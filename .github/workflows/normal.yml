@@ -15,10 +15,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@4
         with:
           dotnet-version: '9.0.x' # Specify the .NET version
 
@@ -26,7 +26,7 @@ jobs:
         run: dotnet restore
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build --configuration Release
 
       - name: Test
-        run: dotnet test --no-build --verbosity normal
+        run: dotnet test --configuration Release --verbosity normal
