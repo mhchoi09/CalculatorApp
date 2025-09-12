@@ -1,1 +1,1 @@
-This is a basic calculator console app using .NET
+This is a basic calculator console app using .NET with Github actions
