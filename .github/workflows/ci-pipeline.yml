@@ -34,4 +34,4 @@ jobs:
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
         with:
-          files: '**/SampleCalculator/TestResults.xml'
+          files: '**/SampleCalculatorApp/TestResults.xml'
