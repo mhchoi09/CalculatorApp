@@ -36,8 +36,3 @@ jobs:
 
       - name: Test
         run: dotnet test --configuration Release --verbosity normal
-
-      - name: Publish Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v2
-        with:
-          files: '**/SampleCalculatorApp/TestResults.xml'
