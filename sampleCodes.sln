@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleCalculatorApp.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleCalculator.Services", "SampleCalculator.Services\SampleCalculator.Services.csproj", "{847E4597-2966-481F-89FF-255B1A2B1318}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleCalculator.ConsolApp", "SampleCalculator.ConsolApp\SampleCalculator.ConsolApp.csproj", "{61689BFE-EE27-426C-93AA-3A28B0762BB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleCalculator.ConsoleApp", "SampleCalculator.ConsolApp\SampleCalculator.ConsoleApp.csproj", "{61689BFE-EE27-426C-93AA-3A28B0762BB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
