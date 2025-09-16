@@ -17,7 +17,7 @@ public class UnitTest1
         int expected = 8;
 
         // Act
-        int result = Operations.Add(a, b);
+        int result = PerformOperation.Add(a, b);
 
         // Assert
         Assert.Equal(expected, result);
@@ -32,7 +32,7 @@ public class UnitTest1
         int expected = 6;
 
         // Act
-        int result = Operations.Subtract(a, b);
+        int result = PerformOperation.Subtract(a, b);
 
         // Assert
         Assert.Equal(expected, result);
@@ -47,7 +47,7 @@ public class UnitTest1
         int expected = 42;
 
         // Act
-        int result = Operations.Multiply(a, b);
+        int result = PerformOperation.Multiply(a, b);
 
         // Assert
         Assert.Equal(expected, result);
@@ -62,7 +62,7 @@ public class UnitTest1
         int expected = 5;
 
         // Act
-        int result = Operations.Divide(a, b);
+        int result = PerformOperation.Divide(a, b);
 
         // Assert
         Assert.Equal(expected, result);
@@ -76,7 +76,7 @@ public class UnitTest1
         int b = 0;
 
         // Act & Assert
-        var exception = Assert.Throws<DivideByZeroException>(() => Operations.Divide(a, b));
+        var exception = Assert.Throws<DivideByZeroException>(() => PerformOperation.Divide(a, b));
 
         Assert.Equal(DivideByZeroMessage, exception.Message);
     }

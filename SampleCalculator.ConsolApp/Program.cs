@@ -1,4 +1,5 @@
-﻿using SampleCalculator.Services;
+﻿using System.Text.RegularExpressions;
+using SampleCalculator.Services;
 
 namespace SampleCalculator.ConsolApp
 {
@@ -6,40 +7,38 @@ namespace SampleCalculator.ConsolApp
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to the Sample Calculator App!");
+            var keepRunning = true;
 
-            Console.WriteLine("Please enter the first number:");
-            var firstNumber = Convert.ToInt32(Console.ReadLine());
-
-            Console.WriteLine("Please enter the second number:");
-            var secondNumber = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Please choose an operation: +, -, *, /");
-
-            string operation = Console.ReadLine() ?? string.Empty;
-            switch (operation)
+            while (keepRunning)
             {
-                case "+":
-                    Console.WriteLine($"Result: {Operations.Add(firstNumber, secondNumber)}");
-                    break;
-                case "-":
-                    Console.WriteLine($"Result: {Operations.Subtract(firstNumber, secondNumber)}");
-                    break;
-                case "*":
-                    Console.WriteLine($"Result: {Operations.Multiply(firstNumber, secondNumber)}");
-                    break;
-                case "/":
-                    try
-                    {
-                        Console.WriteLine($"Result: {Operations.Divide(firstNumber, secondNumber)}");
-                    }
-                    catch (DivideByZeroException ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
-                    break;
-                default:
-                    Console.WriteLine("Invalid operation selected.");
-                    break;
+                Console.WriteLine("Welcome to the Sample Calculator App!");
+
+                Input inputData = new Input();
+                PerformOperation performOperation = new PerformOperation();
+
+                inputData.InputData = new InputData();
+                inputData.InputData.Numbers = new List<decimal>();
+
+                Console.WriteLine("Enter a number or arithemtic operation (X to exit):");
+
+                var inputValue = Console.ReadLine();
+                Regex mathOperators = new Regex("[+\\-\\*\\/]");
+
+                if (decimal.TryParse(inputValue, out decimal number))
+                {
+                    inputData.InputData.Numbers.Add(number);
+                }
+                else if (inputValue?.ToUpper() == "X")
+                {
+                    keepRunning = false;
+                    Console.WriteLine("Exiting the calculator. Goodbye!");
+                    continue;
+                }
+                else if (mathOperators.IsMatch(inputValue) && inputData.InputData.Numbers.Any())
+                {
+                    
+                }
+             
             }
         }
     }
