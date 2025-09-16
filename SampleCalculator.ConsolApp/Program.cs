@@ -7,11 +7,14 @@ namespace SampleCalculator.ConsolApp
         public static void Main(string[] args)
         {
             Console.WriteLine("Welcome to the Sample Calculator App!");
+
             Console.WriteLine("Please enter the first number:");
             var firstNumber = Convert.ToInt32(Console.ReadLine());
+
             Console.WriteLine("Please enter the second number:");
             var secondNumber = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Please choose an operation: +, -, *, /");
+
             string operation = Console.ReadLine() ?? string.Empty;
             switch (operation)
             {
