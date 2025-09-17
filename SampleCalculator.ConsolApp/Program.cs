@@ -50,6 +50,9 @@ namespace SampleCalculator.ConsoleApp
                         case "-":
                             inputData.InputData.Operation = Operations.Subtract;
                             break;
+                        case "*":
+                            inputData.InputData.Operation = Operations.Multiply;
+                            break;
                         default:
                             throw new InvalidOperationException("Unsupported Operation. Try again.");
                     }

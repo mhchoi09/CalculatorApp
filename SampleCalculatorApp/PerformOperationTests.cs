@@ -72,4 +72,21 @@ public class PerformOperationTests
         // Assert
         Assert.Equal(expectedResult, result);
     }
+
+    [Fact]
+    public void Multiplication_MultiplyTwoNumbers_ReturnsResult()
+    {
+        // Arrange
+        var inputNumbers = new List<decimal>
+        {
+            3, 2
+        };
+        var expectedResult = 6;
+
+        //Act
+        var result = PerformOperation.Multiplication(inputNumbers);
+
+        //Assert
+        Assert.Equal(expectedResult, result);
+    }
 }

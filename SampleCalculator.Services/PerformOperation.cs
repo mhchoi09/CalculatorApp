@@ -28,4 +28,16 @@ public static class PerformOperation
 
         return difference;
     }
+
+    public static decimal Multiplication(List<decimal> inputs)
+    {
+        var product = inputs[0];
+
+        for (var i = 1; i < inputs.Count; i++)
+        {
+            product *= inputs[i];
+        }
+
+        return product;
+    }
 }
