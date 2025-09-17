@@ -19,8 +19,6 @@ namespace SampleCalculator.ConsoleApp
                 }
             };
 
-            DataProcessor performOperation = new DataProcessor();
-
             while (keepRunning)
             {
                 Console.WriteLine("Enter a number or arithemtic operation (X to exit):");
@@ -53,11 +51,14 @@ namespace SampleCalculator.ConsoleApp
                         case "*":
                             inputData.InputData.Operation = Operations.Multiply;
                             break;
+                        case "/":
+                            inputData.InputData.Operation = Operations.Divide;
+                            break;
                         default:
                             throw new InvalidOperationException("Unsupported Operation. Try again.");
                     }
 
-                    var calculatorData = performOperation.ProcessInput(inputData);
+                    var calculatorData = DataProcessor.ProcessInput(inputData);
                     Console.WriteLine($"Result: {calculatorData.Result}");
                 }
 

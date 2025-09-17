@@ -1,11 +1,8 @@
-using System;
-using SampleCalculator.Services;
-
 namespace SampleCalculator.Services;
 
-public class DataProcessor
+public static class DataProcessor
 {
-    public Data ProcessInput(Input input)
+    public static Data ProcessInput(Input input)
     {
         if (input == null || input.InputData == null || input.InputData.Numbers == null || !input.InputData.Numbers.Any())
         {
@@ -24,7 +21,13 @@ public class DataProcessor
                 data.Result = PerformOperation.Add(data.InputNumber);
                 break;
             case Operations.Subtract:
-                data.Result = data.InputNumber.Aggregate((a, b) => a - b);
+                data.Result = PerformOperation.Subtract(data.InputNumber);
+                break;
+            case Operations.Multiply:
+                data.Result = PerformOperation.Multiplication(data.InputNumber);
+                break;
+            case Operations.Divide:
+                data.Result = PerformOperation.Division(data.InputNumber);
                 break;
             default:
                 throw new InvalidOperationException("Unsupported operation.");

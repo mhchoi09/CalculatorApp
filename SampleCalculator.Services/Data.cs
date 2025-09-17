@@ -1,15 +1,15 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace SampleCalculator.Services;
-
-[ExcludeFromCodeCoverage]
-public class Data
+namespace SampleCalculator.Services
 {
-    public required List<decimal> InputNumber { get; set; }
+    [ExcludeFromCodeCoverage]
+    public class Data
+    {
+        public required List<decimal> InputNumber { get; set; }
 
-    public required Operations Operations { get; set; }
+        public required Operations Operations { get; set; }
 
-    public decimal Result { get; set; }
+        public decimal Result { get; set; }
 
+    }
 }
