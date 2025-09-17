@@ -1,43 +1,60 @@
-﻿using System.Data.Common;
-using System.Net;
-
-namespace SampleCalculator.Services;
-
-public static class PerformOperation
+﻿namespace SampleCalculator.Services
 {
-    public static decimal Add(List<decimal> inputs)
+    public static class PerformOperation
     {
-        var sum = (decimal)0;
-
-        foreach (var input in inputs)
+        public static decimal Add(List<decimal> inputs)
         {
-            sum += input;
+            var sum = (decimal)0;
+
+            foreach (var input in inputs)
+            {
+                sum += input;
+            }
+
+            return sum;
         }
 
-        return sum;
-    }
-
-    public static decimal Subtract(List<decimal> inputs)
-    {
-        var difference = inputs[0];
-
-        for (var i = 1; i < inputs.Count; i++)
+        public static decimal Subtract(List<decimal> inputs)
         {
-            difference -= inputs[i];
+            var difference = inputs[0];
+
+            for (var i = 1; i < inputs.Count; i++)
+            {
+                difference -= inputs[i];
+            }
+
+            return difference;
         }
 
-        return difference;
-    }
-
-    public static decimal Multiplication(List<decimal> inputs)
-    {
-        var product = inputs[0];
-
-        for (var i = 1; i < inputs.Count; i++)
+        public static decimal Multiplication(List<decimal> inputs)
         {
-            product *= inputs[i];
+            var product = inputs[0];
+
+            for (var i = 1; i < inputs.Count; i++)
+            {
+                product *= inputs[i];
+            }
+
+            return product;
         }
 
-        return product;
+        public static decimal Division(List<decimal> inputs)
+        {
+            var quotient = inputs[0];
+
+            for (var i = 1; i < inputs.Count; i++)
+            {
+                try
+                {
+                    quotient /= inputs[i];
+                }
+                catch (DivideByZeroException e)
+                {
+                    throw new DivideByZeroException("Attempted to divide by zero.", e);
+                }
+            }
+
+            return quotient;
+        }
     }
 }
