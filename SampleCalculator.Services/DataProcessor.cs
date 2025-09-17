@@ -3,9 +3,9 @@ using SampleCalculator.Services;
 
 namespace SampleCalculator.Services;
 
-public class OperationProcessor
+public class DataProcessor
 {
-    public void ProcessInput(Input input)
+    public Data ProcessInput(Input input)
     {
         if (input == null || input.InputData == null || input.InputData.Numbers == null || !input.InputData.Numbers.Any())
         {
@@ -14,32 +14,22 @@ public class OperationProcessor
 
         var data = new Data
         {
-            InputNumber = input.InputData.Numbers.Select(n => (decimal)n).ToList(),
+            InputNumber = input.InputData.Numbers.Select(n => n).ToList(),
             Operations = input.InputData.Operation
         };
 
-        PerformOperation operation = new PerformOperation();
-        
         switch (data.Operations)
         {
             case Operations.Add:
-                data.Result = data.InputNumber.Sum();
+                data.Result = PerformOperation.Add(data.InputNumber);
                 break;
             case Operations.Subtract:
                 data.Result = data.InputNumber.Aggregate((a, b) => a - b);
                 break;
-            case Operations.Multiply:
-                data.Result = data.InputNumber.Aggregate((a, b) => a * b);
-                break;
-            case Operations.Divide:
-                if (data.InputNumber.Contains(0))
-                {
-                    throw new DivideByZeroException("Cannot divide by zero.");
-                }
-                data.Result = data.InputNumber.Aggregate((a, b) => a / b);
-                break;
             default:
                 throw new InvalidOperationException("Unsupported operation.");
         }
+
+        return data;
     }
 }

@@ -1,7 +1,9 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace SampleCalculator.Services;
 
+[ExcludeFromCodeCoverage]
 public class Data
 {
     public required List<decimal> InputNumber { get; set; }

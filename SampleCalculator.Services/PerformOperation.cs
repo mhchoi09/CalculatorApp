@@ -1,34 +1,31 @@
-﻿using System.Net;
+﻿using System.Data.Common;
+using System.Net;
 
 namespace SampleCalculator.Services;
 
-public class PerformOperation
+public static class PerformOperation
 {
-    public static int Add(int a, int b)
+    public static decimal Add(List<decimal> inputs)
     {
-        return a + b;
-    }
-    public static int Subtract(int a, int b)
-    {
-        return a - b;
-    }
+        var sum = (decimal)0;
 
-    public static int Multiply(int a, int b)
-    {
-        return a * b;
-    }
-
-    public static int Divide(int a, int b)
-    {
-        try
+        foreach (var input in inputs)
         {
-            var result = a / b;
+            sum += input;
+        }
 
-            return result;
-        }
-        catch (DivideByZeroException)
+        return sum;
+    }
+
+    public static decimal Subtract(List<decimal> inputs)
+    {
+        var difference = (decimal)0;
+
+        foreach (var input in inputs)
         {
-            throw new DivideByZeroException("Cannot divide by zero.");
+            difference -= difference;
         }
+
+        return difference;
     }
 }
