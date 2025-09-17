@@ -1,5 +1,3 @@
-using System;
-
 namespace SampleCalculator.Services;
 
 public enum Operations
