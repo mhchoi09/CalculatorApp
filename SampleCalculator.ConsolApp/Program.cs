@@ -1,45 +1,66 @@
-﻿using SampleCalculator.Services;
+﻿using System.Text.RegularExpressions;
+using SampleCalculator.Services;
 
-namespace SampleCalculator.ConsolApp
+namespace SampleCalculator.ConsoleApp
 {
     public static class Program
     {
         public static void Main(string[] args)
         {
+            var keepRunning = true;
+
             Console.WriteLine("Welcome to the Sample Calculator App!");
 
-            Console.WriteLine("Please enter the first number:");
-            var firstNumber = Convert.ToInt32(Console.ReadLine());
-
-            Console.WriteLine("Please enter the second number:");
-            var secondNumber = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Please choose an operation: +, -, *, /");
-
-            string operation = Console.ReadLine() ?? string.Empty;
-            switch (operation)
+            Input inputData = new Input
             {
-                case "+":
-                    Console.WriteLine($"Result: {Operations.Add(firstNumber, secondNumber)}");
-                    break;
-                case "-":
-                    Console.WriteLine($"Result: {Operations.Subtract(firstNumber, secondNumber)}");
-                    break;
-                case "*":
-                    Console.WriteLine($"Result: {Operations.Multiply(firstNumber, secondNumber)}");
-                    break;
-                case "/":
-                    try
+                InputData = new InputData
+                {
+                    Numbers = new List<decimal>()
+                }
+            };
+
+            DataProcessor performOperation = new DataProcessor();
+
+            while (keepRunning)
+            {
+                Console.WriteLine("Enter a number or arithemtic operation (X to exit):");
+
+                var inputValueRaw = Console.ReadLine();
+                var inputValue = inputValueRaw?.Trim();
+                Regex mathOperators = new Regex("[+\\-\\*\\/]");
+
+                if (decimal.TryParse(inputValue, out decimal number))
+                {
+                    inputData.InputData.Numbers.AddRange(Convert.ToDecimal(number));
+                }
+                else if (inputValue?.ToUpper() == "X")
+                {
+                    keepRunning = false;
+                    Console.WriteLine("Exiting the calculator. Goodbye!");
+                }
+                else if (!String.IsNullOrEmpty(inputValue) &&
+                mathOperators.IsMatch(inputValue) &&
+                inputData.InputData.Numbers.Count != 0)
+                {
+                    switch (inputValue)
                     {
-                        Console.WriteLine($"Result: {Operations.Divide(firstNumber, secondNumber)}");
+                        case "+":
+                            inputData.InputData.Operation = Operations.Add;
+                            break;
+                        case "-":
+                            inputData.InputData.Operation = Operations.Subtract;
+                            break;
+                        case "*":
+                            inputData.InputData.Operation = Operations.Multiply;
+                            break;
+                        default:
+                            throw new InvalidOperationException("Unsupported Operation. Try again.");
                     }
-                    catch (DivideByZeroException ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
-                    break;
-                default:
-                    Console.WriteLine("Invalid operation selected.");
-                    break;
+
+                    var calculatorData = performOperation.ProcessInput(inputData);
+                    Console.WriteLine($"Result: {calculatorData.Result}");
+                }
+
             }
         }
     }
