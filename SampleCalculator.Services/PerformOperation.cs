@@ -19,11 +19,11 @@ public static class PerformOperation
 
     public static decimal Subtract(List<decimal> inputs)
     {
-        var difference = (decimal)0;
+        var difference = inputs[0];
 
-        foreach (var input in inputs)
+        for (var i = 1; i < inputs.Count; i++)
         {
-            difference -= difference;
+            difference -= inputs[i];
         }
 
         return difference;
